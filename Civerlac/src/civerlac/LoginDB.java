@@ -6,10 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- *
- * @author Roger Sifontes
- */
 public class LoginDB {
     
     Connection con;
@@ -20,19 +16,20 @@ public class LoginDB {
     public Login log(String user, String pass){
         
         Login l = new Login();
-        String sql = "SELECT * FROM usuarios WHERE idEmpleado = ? AND contrasena = ?";
+        String sql = "SELECT idEmpleado, contrasena FROM `usuarios` WHERE idEmpleado = ? AND contrasena = ? AND Estado = 'Habilitado'";
         
         try{
             con = cn.getConnection();
-            ps = con.prepareCall(sql);
-            ps.setString(0,user);
-            ps.setString(1,pass);
+            
+            ps = con.prepareStatement(sql); //EN ESTA LINEA MUERE. ERROR = "Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException"
+
+            ps.setString(1, user);
+            ps.setString(2, pass);
             rs = ps.executeQuery();
             
             if(rs.next()){
                 l.setUser(rs.getString("idEmpleado"));
                 l.setPass(rs.getString("contrasena"));
-                l.setStatus(rs.getString("Estado"));
             } 
         }catch(SQLException e){
             System.out.println(e.toString());
