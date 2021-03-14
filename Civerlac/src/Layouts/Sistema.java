@@ -72,6 +72,7 @@ public class Sistema extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         btnNuevoClienteCLI = new javax.swing.JButton();
         btnModificarCLI = new javax.swing.JButton();
+        btnGuardarCLI = new javax.swing.JButton();
         tabProveedores = new javax.swing.JPanel();
         tabEmpleados = new javax.swing.JPanel();
         tabProductos = new javax.swing.JPanel();
@@ -289,19 +290,24 @@ public class Sistema extends javax.swing.JFrame {
             }
         });
 
+        txtCorreoClienteCLI.setEnabled(false);
         txtCorreoClienteCLI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCorreoClienteCLIActionPerformed(evt);
             }
         });
 
+        txtDireccionClienteCLI.setEnabled(false);
         txtDireccionClienteCLI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDireccionClienteCLIActionPerformed(evt);
             }
         });
 
+        txtTelefonoClienteCLI.setEnabled(false);
+
         cbEstadoCLienteCLI.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Habilitado", "Deshabilitado"}));
+        cbEstadoCLienteCLI.setEnabled(false);
         cbEstadoCLienteCLI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbEstadoCLienteCLIActionPerformed(evt);
@@ -329,10 +335,34 @@ public class Sistema extends javax.swing.JFrame {
                 btnNuevoClienteCLIMouseClicked(evt);
             }
         });
+        btnNuevoClienteCLI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoClienteCLIActionPerformed(evt);
+            }
+        });
 
         btnModificarCLI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/historial ventas.png"))); // NOI18N
         btnModificarCLI.setText("Modificar Cliente");
         btnModificarCLI.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnModificarCLI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnModificarCLIMouseClicked(evt);
+            }
+        });
+
+        btnGuardarCLI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/guardar productos.png"))); // NOI18N
+        btnGuardarCLI.setText("Guardar");
+        btnGuardarCLI.setEnabled(false);
+        btnGuardarCLI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGuardarCLIMouseClicked(evt);
+            }
+        });
+        btnGuardarCLI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarCLIActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout tabClientesLayout = new javax.swing.GroupLayout(tabClientes);
         tabClientes.setLayout(tabClientesLayout);
@@ -366,15 +396,18 @@ public class Sistema extends javax.swing.JFrame {
                                     .addGap(30, 30, 30)
                                     .addComponent(txtNombreClienteCLI, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(tabClientesLayout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(jLabel17))
+                    .addGroup(tabClientesLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnNuevoClienteCLI)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnModificarCLI))
                     .addGroup(tabClientesLayout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addComponent(jLabel17)))
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
+                        .addGap(77, 77, 77)
+                        .addComponent(btnGuardarCLI, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
                 .addContainerGap())
         );
         tabClientesLayout.setVerticalGroup(
@@ -412,7 +445,9 @@ public class Sistema extends javax.swing.JFrame {
                         .addGroup(tabClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnNuevoClienteCLI)
                             .addComponent(btnModificarCLI))
-                        .addGap(92, 92, 92))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnGuardarCLI, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabClientesLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -518,30 +553,28 @@ public class Sistema extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelInfo)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(58, 58, 58)
-                                .addComponent(btnNuevaVenta)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnClientes)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnProveedores)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnEmpleados)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnProductos)
-                                .addGap(14, 14, 14)
-                                .addComponent(btnVentas))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(173, 173, 173)
-                                .addComponent(jLabel1)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(btnNuevaVenta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnClientes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnProveedores)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEmpleados)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnProductos)
+                        .addGap(14, 14, 14)
+                        .addComponent(btnVentas))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(panelInfo)))
-                .addContainerGap())
+                        .addGap(115, 115, 115)
+                        .addComponent(jLabel1)))
+                .addGap(81, 81, 81))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -603,8 +636,52 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_cbEstadoCLienteCLIActionPerformed
 
     private void btnNuevoClienteCLIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoClienteCLIMouseClicked
-        // TODO add your handling code here:
+        btnGuardarCLI.setEnabled(true);     
+        btnNuevoClienteCLI.setEnabled(false);        
+        btnModificarCLI.setEnabled(false);
+        
+        txtIdClienteCLI.setText("");
+        txtNombreClienteCLI.setText("");
+        txtCorreoClienteCLI.setText("");
+        txtCorreoClienteCLI.setEnabled(true);
+        
+        txtDireccionClienteCLI.setText("");
+        txtDireccionClienteCLI.setEnabled(true);
+        
+        txtTelefonoClienteCLI.setText("");
+        txtTelefonoClienteCLI.setEnabled(true);
+        
+        cbEstadoCLienteCLI.setSelectedItem("");
+        cbEstadoCLienteCLI.setEnabled(true);
     }//GEN-LAST:event_btnNuevoClienteCLIMouseClicked
+
+    private void btnGuardarCLIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCLIActionPerformed
+       
+    }//GEN-LAST:event_btnGuardarCLIActionPerformed
+
+    private void btnNuevoClienteCLIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoClienteCLIActionPerformed
+        
+    }//GEN-LAST:event_btnNuevoClienteCLIActionPerformed
+
+    private void btnGuardarCLIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarCLIMouseClicked
+        btnGuardarCLI.setEnabled(false);
+        btnNuevoClienteCLI.setEnabled(true);
+        btnModificarCLI.setEnabled(true);
+        txtCorreoClienteCLI.setEnabled(false);
+        txtDireccionClienteCLI.setEnabled(false);
+        txtTelefonoClienteCLI.setEnabled(false);
+        cbEstadoCLienteCLI.setEnabled(false);
+    }//GEN-LAST:event_btnGuardarCLIMouseClicked
+
+    private void btnModificarCLIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarCLIMouseClicked
+        btnGuardarCLI.setEnabled(true);     
+        btnNuevoClienteCLI.setEnabled(false);        
+        btnModificarCLI.setEnabled(false);
+        txtCorreoClienteCLI.setEnabled(true);
+        txtDireccionClienteCLI.setEnabled(true);
+        txtTelefonoClienteCLI.setEnabled(true);
+        cbEstadoCLienteCLI.setEnabled(true);
+    }//GEN-LAST:event_btnModificarCLIMouseClicked
 
     /**
      * @param args the command line arguments
@@ -646,6 +723,7 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnEliminarNV;
     private javax.swing.JButton btnEmpleados;
+    private javax.swing.JButton btnGuardarCLI;
     private javax.swing.JButton btnModificarCLI;
     private javax.swing.JButton btnNuevaVenta;
     private javax.swing.JButton btnNuevoClienteCLI;
