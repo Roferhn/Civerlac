@@ -47,11 +47,12 @@ public class ClienteDB {
         
     }
     
-    /*
+    
     public List listarClientes(){
     
         List<Cliente> listaCL = new ArrayList();
-        String sql = "SELECT * FROM cliente";
+        String sql = "SELECT * FROM `cliente`";
+        //String sql = "SELECT c.idCliente, c.Nombre, c.Correo, c.Direccion, tc.Telefono, c.Estado FROM cliente AS c INNER JOIN telefonocliente AS tc ON c.idTelefonoCli = tc.idTelefonoCli";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -65,11 +66,14 @@ public class ClienteDB {
                 cl.setDireccion(rs.getString("Direccion"));
                 cl.setIdTelefonoCli(rs.getInt("idTelefonoCli"));
                 cl.setEstado(rs.getString("Estado"));
+                listaCL.add(cl);
                  
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println(e.toString());
         }
+        return listaCL;
     }
 
-    */
+    
 }

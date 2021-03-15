@@ -8,8 +8,11 @@ package Layouts;
 import civerlac.Cliente;
 import civerlac.ClienteDB;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,8 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class Sistema extends javax.swing.JFrame {
 
-    Cliente cl = new Cliente();
-    ClienteDB cliente = new ClienteDB();
+   
     
     /**
      * Creates new form Sistema
@@ -27,6 +29,40 @@ public class Sistema extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+    
+    
+    //****MEDOTOS CLIENTES****
+    
+    Cliente cl = new Cliente();
+    ClienteDB cliente = new ClienteDB();
+    DefaultTableModel modeloTB = new DefaultTableModel();
+    
+    public void listaClientes(){
+        List<Cliente> listaCl = cliente.listarClientes();
+        modeloTB = (DefaultTableModel) tbClientesCLI.getModel();
+        
+        Object[] obj = new Object[6];
+        for (int i = 0; i < listaCl.size(); i++) {
+            obj[0] = listaCl.get(i).getIdCliente();
+            obj[1] = listaCl.get(i).getNombre();
+            obj[2] = listaCl.get(i).getCorreo();
+            obj[3] = listaCl.get(i).getDireccion();
+            obj[4] = listaCl.get(i).getIdTelefonoCli();
+            obj[5] = listaCl.get(i).getEstado();
+            
+            modeloTB.addRow(obj);
+            
+        }
+        tbClientesCLI.setModel(modeloTB);
+    }
+    
+    public void limpiarTabla(){
+        for (int i = 0; i < modeloTB.getRowCount(); i++) {
+            modeloTB.removeRow(i);
+            i=i-1;
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -262,9 +298,8 @@ public class Sistema extends javax.swing.JFrame {
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(tabNuevaVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tabNuevaVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel9)
-                        .addComponent(jLabel10))
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10)
                     .addGroup(tabNuevaVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(btnVentaNV)
                         .addGroup(tabNuevaVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -526,6 +561,16 @@ public class Sistema extends javax.swing.JFrame {
         btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/ususario.png"))); // NOI18N
         btnClientes.setText("Clientes");
         btnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnClientesMouseClicked(evt);
+            }
+        });
+        btnClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClientesActionPerformed(evt);
+            }
+        });
 
         btnProveedores.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/ususario.png"))); // NOI18N
@@ -694,6 +739,8 @@ public class Sistema extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
         }
+        limpiarTabla();
+        listaClientes();
     }//GEN-LAST:event_btnGuardarCLIMouseClicked
 
     private void btnModificarCLIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarCLIMouseClicked
@@ -705,6 +752,16 @@ public class Sistema extends javax.swing.JFrame {
         txtTelefonoClienteCLI.setEnabled(true);
         cbEstadoCLienteCLI.setEnabled(true);
     }//GEN-LAST:event_btnModificarCLIMouseClicked
+
+    private void btnClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseClicked
+        panelInfo.setSelectedIndex(1);
+        limpiarTabla();
+        listaClientes();
+    }//GEN-LAST:event_btnClientesMouseClicked
+
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+        
+    }//GEN-LAST:event_btnClientesActionPerformed
 
     /**
      * @param args the command line arguments
