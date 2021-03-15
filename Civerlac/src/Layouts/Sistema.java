@@ -5,12 +5,21 @@
  */
 package Layouts;
 
+import civerlac.Cliente;
+import civerlac.ClienteDB;
+import java.util.HashSet;
+import java.util.Set;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Roger Sifontes
  */
 public class Sistema extends javax.swing.JFrame {
 
+    Cliente cl = new Cliente();
+    ClienteDB cliente = new ClienteDB();
+    
     /**
      * Creates new form Sistema
      */
@@ -664,13 +673,27 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevoClienteCLIActionPerformed
 
     private void btnGuardarCLIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarCLIMouseClicked
-        btnGuardarCLI.setEnabled(false);
-        btnNuevoClienteCLI.setEnabled(true);
-        btnModificarCLI.setEnabled(true);
-        txtCorreoClienteCLI.setEnabled(false);
-        txtDireccionClienteCLI.setEnabled(false);
-        txtTelefonoClienteCLI.setEnabled(false);
-        cbEstadoCLienteCLI.setEnabled(false);
+        if (!"".equals(txtIdClienteCLI.getText()) && !"".equals(txtNombreClienteCLI.getText()) && !"".equals(txtCorreoClienteCLI.getText()) && !"".equals(txtDireccionClienteCLI.getText()) && !"".equals(txtTelefonoClienteCLI.getText()) && !"".equals(cbEstadoCLienteCLI.getSelectedItem())){
+            
+            cl.setIdCliente(Integer.parseInt(txtIdClienteCLI.getText()));
+            cl.setNombre(txtNombreClienteCLI.getText());
+            cl.setCorreo(txtCorreoClienteCLI.getText());
+            cl.setDireccion(txtDireccionClienteCLI.getText());
+            cl.setIdTelefonoCli(Integer.parseInt(txtTelefonoClienteCLI.getText()));
+            cl.setEstado((String) cbEstadoCLienteCLI.getSelectedItem());
+            cliente.registrarClientes(cl);
+            JOptionPane.showMessageDialog(null, "Cliente Registrado");
+            
+            btnGuardarCLI.setEnabled(false);
+            btnNuevoClienteCLI.setEnabled(true);
+            btnModificarCLI.setEnabled(true);
+            txtCorreoClienteCLI.setEnabled(false);
+            txtDireccionClienteCLI.setEnabled(false);
+            txtTelefonoClienteCLI.setEnabled(false);
+            cbEstadoCLienteCLI.setEnabled(false);
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
+        }
     }//GEN-LAST:event_btnGuardarCLIMouseClicked
 
     private void btnModificarCLIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarCLIMouseClicked

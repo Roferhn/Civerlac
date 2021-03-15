@@ -9,15 +9,15 @@ public class Login {
     
     private String user;
     private String pass;
-    private String status;
+   
 
     public Login() {
     }
 
-    public Login(String user, String pass, String status) {
+    public Login(String user, String pass) {
         this.user = user;
         this.pass = pass;
-        this.status = status;
+        
     }
 
     public String getUser() {
@@ -36,13 +36,9 @@ public class Login {
         this.pass = pass;
     }
 
-    public String getStatus() {
-        return status;
-    }
+   
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+   
     
     
 }
