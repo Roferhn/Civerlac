@@ -1,0 +1,1 @@
+Se agregaron las validaciones a los campos: Correo y teléfono de la pestaña cliente. Hacer un merge con la rama master y feature-validaciones
