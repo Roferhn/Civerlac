@@ -8,12 +8,12 @@ public class Cliente {
     private String Correo;
     private String Direccion;
     private int idTelefonoCli;
-    private String estado;
+    private int estado;
 
     public Cliente() {
     }
 
-    public Cliente(int idCliente, String nombre, String Correo, String Direccion, int idTelefonoCli, String estado) {
+    public Cliente(int idCliente, String nombre, String Correo, String Direccion, int idTelefonoCli, int estado) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.Correo = Correo;
@@ -62,11 +62,11 @@ public class Cliente {
         this.idTelefonoCli = idTelefonoCli;
     }
 
-    public String getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
     

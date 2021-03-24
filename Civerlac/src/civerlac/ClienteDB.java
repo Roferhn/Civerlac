@@ -21,7 +21,7 @@ public class ClienteDB {
     
     public boolean registrarClientes(Cliente cl){
         
-        String sql = "INSERT INTO `cliente`(`idCliente`, `Nombre`, `Correo`, `Direccion`, `idTelefonoCli`, `Estado`) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO `cliente`(`idCliente`, `Nombre`, `Correo`, `Direccion`, `idTelefonoCli`, `idEstado`) VALUES (?,?,?,?,?,?)";
         
         try{
             con = cn.getConnection();
@@ -31,7 +31,7 @@ public class ClienteDB {
             ps.setString(3, cl.getCorreo());
             ps.setString(4, cl.getDireccion());
             ps.setInt(5, cl.getIdTelefonoCli());
-            ps.setString(6, cl.getEstado());
+            ps.setInt(6, cl.getEstado());
             ps.execute();
             return true;
         }catch(SQLException e){
@@ -65,7 +65,7 @@ public class ClienteDB {
                 cl.setCorreo(rs.getString("Correo"));
                 cl.setDireccion(rs.getString("Direccion"));
                 cl.setIdTelefonoCli(rs.getInt("idTelefonoCli"));
-                cl.setEstado(rs.getString("Estado"));
+                cl.setEstado(rs.getInt("Estado"));
                 listaCL.add(cl);
                  
             }
@@ -75,5 +75,32 @@ public class ClienteDB {
         return listaCL;
     }
 
+    
+    public boolean modificarCliente(Cliente cl){
+        
+        String sql = "UPDATE cliente SET idCliente=? ,Nombre=?,Correo=?,Direccion=?,idTelefonoCli=?,Estado=? WHERE idCliente=?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, cl.getIdCliente());
+            ps.setString(2, cl.getNombre());
+            ps.setString(3, cl.getCorreo());
+            ps.setString(4, cl.getDireccion());
+            ps.setInt(5, cl.getIdTelefonoCli());
+            ps.setInt(6, cl.getEstado());
+            ps.setInt(7, cl.getIdCliente());
+            ps.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+            return false;
+        }/*finally{
+            try{
+               con.close();
+            }catch(SQLException e){
+                System.out.println(e.toString());
+            }
+        }*/
+    
+    }
     
 }

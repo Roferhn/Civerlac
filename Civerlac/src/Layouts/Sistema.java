@@ -362,7 +362,7 @@ public class Sistema extends javax.swing.JFrame {
                         .addGroup(tabNuevaVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtIdClienteNV, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
                             .addComponent(txtNombreClienteNV))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         panelInfo.addTab("Nueva venta", tabNuevaVenta);
@@ -552,7 +552,7 @@ public class Sistema extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabClientesLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         panelInfo.addTab("Clientes", tabClientes);
@@ -695,10 +695,10 @@ public class Sistema extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnModificarProveedores))
                     .addGroup(tabProveedoresLayout.createSequentialGroup()
-                        .addGap(77, 77, 77)
+                        .addGap(111, 111, 111)
                         .addComponent(btnGuardarProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
                 .addContainerGap())
         );
         tabProveedoresLayout.setVerticalGroup(
@@ -742,7 +742,7 @@ public class Sistema extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabProveedoresLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         panelInfo.addTab("Proveedores", tabProveedores);
@@ -866,14 +866,9 @@ public class Sistema extends javax.swing.JFrame {
                         .addComponent(jLabel36))
                     .addGroup(tabEmpleadosLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(tabEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(tabEmpleadosLayout.createSequentialGroup()
-                                .addComponent(btnNuevoEmpleado)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnModificarEmpleado))
-                            .addGroup(tabEmpleadosLayout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addComponent(btnGuardarEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(btnNuevoEmpleado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnModificarEmpleado))
                     .addGroup(tabEmpleadosLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(tabEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -901,16 +896,22 @@ public class Sistema extends javax.swing.JFrame {
                                         .addComponent(cbEstadoEmpleados, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(txtCorreoEmpleados)
                                         .addComponent(txtDireccionEmpleados)
-                                        .addComponent(txtTelefonoEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(txtTelefonoEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(tabEmpleadosLayout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addComponent(btnGuardarEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
                 .addContainerGap())
         );
         tabEmpleadosLayout.setVerticalGroup(
             tabEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabEmpleadosLayout.createSequentialGroup()
                 .addGroup(tabEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tabEmpleadosLayout.createSequentialGroup()
+                    .addGroup(tabEmpleadosLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane6))
+                    .addGroup(tabEmpleadosLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jLabel36)
                         .addGap(31, 31, 31)
@@ -946,11 +947,8 @@ public class Sistema extends javax.swing.JFrame {
                             .addComponent(btnNuevoEmpleado)
                             .addComponent(btnModificarEmpleado))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnGuardarEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tabEmpleadosLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 22, Short.MAX_VALUE))
+                        .addComponent(btnGuardarEmpleados)))
+                .addGap(14, 14, 14))
         );
 
         panelInfo.addTab("Empleados", tabEmpleados);
@@ -1077,7 +1075,7 @@ public class Sistema extends javax.swing.JFrame {
                                 .addComponent(txtIdProductosProductos)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
 
         panelInfo.addTab("Productos", tabProductos);
@@ -1127,7 +1125,7 @@ public class Sistema extends javax.swing.JFrame {
                     .addComponent(txtIdVenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         panelInfo.addTab("Historial de Ventas", tabHistorial);
@@ -1224,11 +1222,10 @@ public class Sistema extends javax.swing.JFrame {
                     .addComponent(btnVentas)
                     .addComponent(btnEmpleados))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(panelInfo))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 800));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 820));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1305,7 +1302,7 @@ public class Sistema extends javax.swing.JFrame {
             cl.setCorreo(txtCorreoClienteCLI.getText());
             cl.setDireccion(txtDireccionClienteCLI.getText());
             cl.setIdTelefonoCli(Integer.parseInt(txtTelefonoClienteCLI.getText()));
-            cl.setEstado((String) cbEstadoCLienteCLI.getSelectedItem());
+            cl.setEstado((int) cbEstadoCLienteCLI.getSelectedItem());
             cliente.registrarClientes(cl);
             JOptionPane.showMessageDialog(null, "Cliente Registrado");
             

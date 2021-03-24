@@ -16,11 +16,11 @@ public class LoginDB {
     public Login log(String user, String pass){
         
         Login l = new Login();
-        String sql = "SELECT * FROM usuarios WHERE idEmpleado = ? AND contrasena = ? AND Estado = 'Habilitado'";
+        String sql = "SELECT * FROM usuarios WHERE idEmpleado = ? AND contrasena = ?";
         
         try{
             con = cn.getConnection();
-            ps = con.prepareStatement(sql);//EN ESTA LINEA MUERE. ERROR = "Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException
+            ps = con.prepareStatement(sql);
             ps.setString(1, user);
             ps.setString(2, pass);
             rs = ps.executeQuery();
@@ -28,10 +28,26 @@ public class LoginDB {
             if(rs.next()){
                 l.setUser(rs.getString("idEmpleado"));
                 l.setPass(rs.getString("contrasena"));
+                l.setEstado(rs.getInt("idEstado"));
+                System.out.println(l.getUser()+l.getPass()+l.getEstado());
             } 
         }catch(SQLException e){
             System.out.println(e.toString());
         }
         return l;
     }
+    
+    public boolean bloquearUsusario(Login l){
+        
+        String sql = "UPDATE empleados SET idEstado=0 WHERE idEmpleado=?";
+        try {
+            ps.setString(2, l.getUser());
+            ps.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+            return false;
+        }
+}
+    
 }

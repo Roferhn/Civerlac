@@ -18,7 +18,9 @@ public class LoginLayout extends javax.swing.JFrame {
     Login lg = new Login();
     LoginDB login = new LoginDB();
     String user = new String();
-    String pass = new String(); 
+    String pass = new String();
+    int estado;
+    int cont=3;
     /**
      * Creates new form Login
      */
@@ -30,21 +32,31 @@ public class LoginLayout extends javax.swing.JFrame {
     public void validar(){
        user = txtUsuario.getText();
        pass = String.valueOf(txtContrasena.getPassword());
-        
-        if (!"".equals(user) || !"".equals(pass)){
-            
-            lg = login.log(user, pass); 
-            
-            if(lg.getUser()!=null && lg.getPass()!= null ){
-                Sistema sis = new Sistema();
-                sis.setVisible(true);
-                dispose();
+       
+ 
+       /*------Verificar que los campos esten llenos----*/
+       if(!"".equals(user) && !"".equals(pass)){
+          lg = login.log(user, pass);
+          estado = lg.getEstado();
+          if(lg.getEstado() != 0){
+              
+              if(lg.getUser()!=null && lg.getPass()!= null){
+                    Sistema sis = new Sistema();
+                    sis.setVisible(true);
+                    dispose();
+              }else{
+                  JOptionPane.showMessageDialog(null,"Usuario o contrasena incorrectos.");
+              }              
             }else{
-                JOptionPane.showMessageDialog(null, "Usuario o Contrasena incorrectos");
-            }
+           JOptionPane.showMessageDialog(null,"Usuario bloqueado.");   
+            }  
+        }else{
+           JOptionPane.showMessageDialog(null,"Debe llenar todos los campos.");
         }
-        
     }
+    
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
