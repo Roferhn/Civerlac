@@ -31,6 +31,13 @@ public class ClienteDB {
             ps.setString(3, cl.getCorreo());
             ps.setString(4, cl.getDireccion());
             ps.setInt(5, cl.getIdTelefonoCli());
+            if(cl.getEstado()=="Habilitado"){
+                cl.setIdEstado(1);
+                
+            }else{
+                cl.setIdEstado(0);
+            }
+                
             ps.setInt(6, cl.getIdEstado());
             ps.execute();
             return true;
@@ -75,6 +82,7 @@ public class ClienteDB {
                 
                 
                 listaCL.add(cl);
+                System.out.println(listaCL);
                  
             }
         } catch (SQLException e) {

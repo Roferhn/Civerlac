@@ -37,6 +37,7 @@ public class Sistema extends javax.swing.JFrame {
     
     Cliente cl = new Cliente();
     ClienteDB cliente = new ClienteDB();
+    int pointerCLI;
     
     Proveedor pr = new Proveedor();
     ProveedorDB PrDB = new ProveedorDB();
@@ -67,6 +68,14 @@ public class Sistema extends javax.swing.JFrame {
             modeloTB.removeRow(i);
             i=i-1;
         }
+    }
+    public void limpiarCliente(){
+        txtIdClienteCLI.setText("");
+        txtNombreClienteCLI.setText("");
+        txtCorreoClienteCLI.setText("");
+        txtDireccionClienteCLI.setText("");
+        txtTelefonoClienteCLI.setText("");
+        cbEstadoCLienteCLI.setSelectedItem("");
     }
     
 
@@ -429,6 +438,11 @@ public class Sistema extends javax.swing.JFrame {
                 "Id Cliente", "Nombre", "Correo", "Direccion", "Telefono", "Estado"
             }
         ));
+        tbClientesCLI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbClientesCLIMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbClientesCLI);
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -516,54 +530,52 @@ public class Sistema extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnModificarCLI))
                     .addGroup(tabClientesLayout.createSequentialGroup()
-                        .addGap(77, 77, 77)
+                        .addGap(86, 86, 86)
                         .addComponent(btnGuardarCLI, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
         );
         tabClientesLayout.setVerticalGroup(
             tabClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabClientesLayout.createSequentialGroup()
-                .addGroup(tabClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tabClientesLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel17)
-                        .addGap(31, 31, 31)
-                        .addGroup(tabClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(txtIdClienteCLI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(tabClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(txtNombreClienteCLI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(tabClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13)
-                            .addComponent(txtCorreoClienteCLI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(tabClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14)
-                            .addComponent(txtDireccionClienteCLI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(tabClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel15)
-                            .addComponent(txtTelefonoClienteCLI))
-                        .addGap(18, 18, 18)
-                        .addGroup(tabClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel16)
-                            .addComponent(cbEstadoCLienteCLI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(tabClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnNuevoClienteCLI)
-                            .addComponent(btnModificarCLI))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnGuardarCLI, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabClientesLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(jLabel17)
+                .addGap(31, 31, 31)
+                .addGroup(tabClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(txtIdClienteCLI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(tabClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(txtNombreClienteCLI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(tabClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(txtCorreoClienteCLI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(tabClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(txtDireccionClienteCLI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(tabClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(txtTelefonoClienteCLI))
+                .addGap(18, 18, 18)
+                .addGroup(tabClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(cbEstadoCLienteCLI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(tabClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNuevoClienteCLI)
+                    .addComponent(btnModificarCLI))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnGuardarCLI, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 70, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabClientesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
 
         panelInfo.addTab("Clientes", tabClientes);
@@ -1300,6 +1312,7 @@ public class Sistema extends javax.swing.JFrame {
         
         cbEstadoCLienteCLI.setSelectedItem("Habilitado");
         cbEstadoCLienteCLI.setEnabled(true);
+        pointerCLI=1;
     }//GEN-LAST:event_btnNuevoClienteCLIMouseClicked
 
     private void btnGuardarCLIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCLIActionPerformed
@@ -1311,44 +1324,76 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevoClienteCLIActionPerformed
 
     private void btnGuardarCLIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarCLIMouseClicked
-        if (!"".equals(txtIdClienteCLI.getText()) && !"".equals(txtNombreClienteCLI.getText()) && !"".equals(txtCorreoClienteCLI.getText()) && !"".equals(txtDireccionClienteCLI.getText()) && !"".equals(txtTelefonoClienteCLI.getText()) && !"".equals(cbEstadoCLienteCLI.getSelectedItem())){
+       if(pointerCLI==1){
+           if (!"".equals(txtIdClienteCLI.getText()) && !"".equals(txtNombreClienteCLI.getText()) && !"".equals(txtCorreoClienteCLI.getText()) && !"".equals(txtDireccionClienteCLI.getText()) && !"".equals(txtTelefonoClienteCLI.getText()) && !"".equals(cbEstadoCLienteCLI.getSelectedItem())){
             
-            cl.setIdCliente(Integer.parseInt(txtIdClienteCLI.getText()));
-            cl.setNombre(txtNombreClienteCLI.getText());
-            cl.setCorreo(txtCorreoClienteCLI.getText());
-            cl.setDireccion(txtDireccionClienteCLI.getText());
-            cl.setIdTelefonoCli(Integer.parseInt(txtTelefonoClienteCLI.getText()));
-            
-            if(cbEstadoCLienteCLI.getSelectedItem()=="Hablilitado"){
-                cl.setIdEstado(1);
+                cl.setIdCliente(Integer.parseInt(txtIdClienteCLI.getText()));
+                cl.setNombre(txtNombreClienteCLI.getText());
+                cl.setCorreo(txtCorreoClienteCLI.getText());
+                cl.setDireccion(txtDireccionClienteCLI.getText());
+                cl.setIdTelefonoCli(Integer.parseInt(txtTelefonoClienteCLI.getText()));
+
+                if(cbEstadoCLienteCLI.getSelectedItem()!="Hablilitado"){
+                    cl.setIdEstado(1);
+                }else{
+                    cl.setIdEstado(0);
+                }
+                cliente.registrarClientes(cl);
+                JOptionPane.showMessageDialog(null, "Cliente Registrado");
+
+                btnGuardarCLI.setEnabled(false);
+                btnNuevoClienteCLI.setEnabled(true);
+                btnModificarCLI.setEnabled(true);
+                txtCorreoClienteCLI.setEnabled(false);
+                txtDireccionClienteCLI.setEnabled(false);
+                txtTelefonoClienteCLI.setEnabled(false);
+                cbEstadoCLienteCLI.setEnabled(false);
             }else{
-                cl.setIdEstado(0);
+                JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
             }
-            cliente.registrarClientes(cl);
-            JOptionPane.showMessageDialog(null, "Cliente Registrado");
-            
-            btnGuardarCLI.setEnabled(false);
-            btnNuevoClienteCLI.setEnabled(true);
-            btnModificarCLI.setEnabled(true);
-            txtCorreoClienteCLI.setEnabled(false);
-            txtDireccionClienteCLI.setEnabled(false);
-            txtTelefonoClienteCLI.setEnabled(false);
-            cbEstadoCLienteCLI.setEnabled(false);
-        }else{
-            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
-        }
         limpiarTabla();
         listaClientes();
+       }else{
+           
+           if("".equals(txtIdClienteCLI.getText())){
+               JOptionPane.showMessageDialog(null, "Seleccione un cliente de la tabla");
+           }else{
+               cl.setIdCliente(Integer.parseInt(txtIdClienteCLI.getText()));
+               cl.setNombre(txtNombreClienteCLI.getText());
+               cl.setCorreo(txtCorreoClienteCLI.getText());
+               cl.setDireccion(txtDireccionClienteCLI.getText());
+               cl.setIdTelefonoCli(Integer.parseInt(txtTelefonoClienteCLI.getText()));
+               cl.setEstado((String) cbEstadoCLienteCLI.getSelectedItem());
+               
+               if(cl.getEstado()=="Hablilitado"){
+                   cl.setIdEstado(1);
+               }else{
+                   cl.setIdEstado(0);
+               }
+               if (!"".equals(txtIdClienteCLI.getText()) && !"".equals(txtNombreClienteCLI.getText()) && !"".equals(txtCorreoClienteCLI.getText()) && !"".equals(txtDireccionClienteCLI.getText()) && !"".equals(txtTelefonoClienteCLI.getText()) && !"".equals(cbEstadoCLienteCLI.getSelectedItem())){
+                   cliente.modificarCliente(cl);
+                   limpiarTabla();                   
+                   limpiarCliente();
+                   listaClientes();
+                   
+               }
+           }
+           
+       }
+        
+        
     }//GEN-LAST:event_btnGuardarCLIMouseClicked
 
     private void btnModificarCLIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarCLIMouseClicked
         btnGuardarCLI.setEnabled(true);     
         btnNuevoClienteCLI.setEnabled(false);        
         btnModificarCLI.setEnabled(false);
+        txtIdClienteCLI.setEnabled(false);
         txtCorreoClienteCLI.setEnabled(true);
         txtDireccionClienteCLI.setEnabled(true);
         txtTelefonoClienteCLI.setEnabled(true);
         cbEstadoCLienteCLI.setEnabled(true);
+        pointerCLI=2;
     }//GEN-LAST:event_btnModificarCLIMouseClicked
 
     private void btnClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseClicked
@@ -1476,6 +1521,17 @@ public class Sistema extends javax.swing.JFrame {
     private void btnModificarCLIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarCLIActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnModificarCLIActionPerformed
+
+    private void tbClientesCLIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbClientesCLIMouseClicked
+        int fila = tbClientesCLI.rowAtPoint(evt.getPoint());
+        txtIdClienteCLI.setText(tbClientesCLI.getValueAt(fila,0).toString());
+        txtNombreClienteCLI.setText(tbClientesCLI.getValueAt(fila,1).toString());
+        txtCorreoClienteCLI.setText(tbClientesCLI.getValueAt(fila,2).toString());
+        txtDireccionClienteCLI.setText(tbClientesCLI.getValueAt(fila,3).toString());
+        txtTelefonoClienteCLI.setText(tbClientesCLI.getValueAt(fila,4).toString());
+        cbEstadoCLienteCLI.setSelectedItem(tbClientesCLI.getValueAt(fila,5).toString());
+        
+    }//GEN-LAST:event_tbClientesCLIMouseClicked
 
     /**
      * @param args the command line arguments
