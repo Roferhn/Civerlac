@@ -8,18 +8,21 @@ public class Cliente {
     private String Correo;
     private String Direccion;
     private int idTelefonoCli;
-    private int estado;
+    private int idEstado;
+    private String estado;
 
     public Cliente() {
     }
 
-    public Cliente(int idCliente, String nombre, String Correo, String Direccion, int idTelefonoCli, int estado) {
+    public Cliente(int idCliente, String nombre, String Correo, String Direccion, int idTelefonoCli,int idEstado, String estado) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.Correo = Correo;
         this.Direccion = Direccion;
         this.idTelefonoCli = idTelefonoCli;
+        this.idEstado = idEstado;
         this.estado = estado;
+        
     }
 
     public int getIdCliente() {
@@ -62,11 +65,19 @@ public class Cliente {
         this.idTelefonoCli = idTelefonoCli;
     }
 
-    public int getEstado() {
+    public int getIdEstado() {
+        return idEstado;
+    }
+
+    public void setIdEstado(int idEstado) {
+        this.idEstado = idEstado;
+    }
+
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
     

@@ -31,7 +31,7 @@ public class ClienteDB {
             ps.setString(3, cl.getCorreo());
             ps.setString(4, cl.getDireccion());
             ps.setInt(5, cl.getIdTelefonoCli());
-            ps.setInt(6, cl.getEstado());
+            ps.setInt(6, cl.getIdEstado());
             ps.execute();
             return true;
         }catch(SQLException e){
@@ -65,7 +65,15 @@ public class ClienteDB {
                 cl.setCorreo(rs.getString("Correo"));
                 cl.setDireccion(rs.getString("Direccion"));
                 cl.setIdTelefonoCli(rs.getInt("idTelefonoCli"));
-                cl.setEstado(rs.getInt("Estado"));
+                cl.setIdEstado(rs.getInt("idEstado"));
+                
+                if (cl.getIdEstado()==1){
+                    cl.setEstado("Habilitado");
+                }else{
+                    cl.setEstado("Deshabilitado");
+                }
+                
+                
                 listaCL.add(cl);
                  
             }
@@ -78,7 +86,7 @@ public class ClienteDB {
     
     public boolean modificarCliente(Cliente cl){
         
-        String sql = "UPDATE cliente SET idCliente=? ,Nombre=?,Correo=?,Direccion=?,idTelefonoCli=?,Estado=? WHERE idCliente=?";
+        String sql = "UPDATE cliente SET idCliente=? ,Nombre=?,Correo=?,Direccion=?,idTelefonoCli=?,idEstado=? WHERE idCliente=?";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, cl.getIdCliente());
@@ -86,7 +94,12 @@ public class ClienteDB {
             ps.setString(3, cl.getCorreo());
             ps.setString(4, cl.getDireccion());
             ps.setInt(5, cl.getIdTelefonoCli());
-            ps.setInt(6, cl.getEstado());
+            if(cl.getEstado()=="Habilitado"){
+                cl.setIdEstado(1);
+            }else{
+                cl.setIdEstado(0);
+            }
+            ps.setInt(6, cl.getIdEstado());
             ps.setInt(7, cl.getIdCliente());
             ps.execute();
             return true;

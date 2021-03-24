@@ -37,8 +37,8 @@ public class Sistema extends javax.swing.JFrame {
     
     Cliente cl = new Cliente();
     ClienteDB cliente = new ClienteDB();
-    Proveedor pr = new Proveedor();
     
+    Proveedor pr = new Proveedor();
     ProveedorDB PrDB = new ProveedorDB();
     
     DefaultTableModel modeloTB = new DefaultTableModel();
@@ -454,6 +454,11 @@ public class Sistema extends javax.swing.JFrame {
         btnModificarCLI.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnModificarCLIMouseClicked(evt);
+            }
+        });
+        btnModificarCLI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarCLIActionPerformed(evt);
             }
         });
 
@@ -1293,7 +1298,7 @@ public class Sistema extends javax.swing.JFrame {
         txtTelefonoClienteCLI.setText("");
         txtTelefonoClienteCLI.setEnabled(true);
         
-        cbEstadoCLienteCLI.setSelectedItem("");
+        cbEstadoCLienteCLI.setSelectedItem("Habilitado");
         cbEstadoCLienteCLI.setEnabled(true);
     }//GEN-LAST:event_btnNuevoClienteCLIMouseClicked
 
@@ -1313,7 +1318,12 @@ public class Sistema extends javax.swing.JFrame {
             cl.setCorreo(txtCorreoClienteCLI.getText());
             cl.setDireccion(txtDireccionClienteCLI.getText());
             cl.setIdTelefonoCli(Integer.parseInt(txtTelefonoClienteCLI.getText()));
-            cl.setEstado((int) cbEstadoCLienteCLI.getSelectedItem());
+            
+            if(cbEstadoCLienteCLI.getSelectedItem()=="Hablilitado"){
+                cl.setIdEstado(1);
+            }else{
+                cl.setIdEstado(0);
+            }
             cliente.registrarClientes(cl);
             JOptionPane.showMessageDialog(null, "Cliente Registrado");
             
@@ -1462,6 +1472,10 @@ public class Sistema extends javax.swing.JFrame {
     private void btnAgregarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductosActionPerformed
          
     }//GEN-LAST:event_btnAgregarProductosActionPerformed
+
+    private void btnModificarCLIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarCLIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarCLIActionPerformed
 
     /**
      * @param args the command line arguments
