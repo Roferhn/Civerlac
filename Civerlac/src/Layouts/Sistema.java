@@ -7,6 +7,8 @@ package Layouts;
 
 import civerlac.Cliente;
 import civerlac.ClienteDB;
+import civerlac.Proveedor;
+import civerlac.ProveedorDB;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,6 +37,10 @@ public class Sistema extends javax.swing.JFrame {
     
     Cliente cl = new Cliente();
     ClienteDB cliente = new ClienteDB();
+    Proveedor pr = new Proveedor();
+    
+    ProveedorDB PrDB = new ProveedorDB();
+    
     DefaultTableModel modeloTB = new DefaultTableModel();
     
     public void listaClientes(){
@@ -1007,6 +1013,11 @@ public class Sistema extends javax.swing.JFrame {
 
         btnAgregarProductos.setText("Agregar");
         btnAgregarProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAgregarProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarProductosActionPerformed(evt);
+            }
+        });
 
         btnEliminarProductos.setText("Eliminar");
         btnEliminarProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -1361,7 +1372,18 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevoProveedoresMouseClicked
 
     private void btnNuevoProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProveedoresActionPerformed
-        // TODO add your handling code here:
+         if (!"".equals(txtIdProveedores.getText()) || !"".equals(txtNombreProveedores.getText()) || !"".equals(txtCorreoProveedores.getText()) || !"".equals(txtIdTelefonoProveedores.getText()) || !"".equals(cbEstadoProveedores.getSelectedItem())) {
+            pr.setIdProveedor(Integer.parseInt(txtIdProveedores.getText()));
+            pr.setNombre(txtNombreProveedores.getText());
+            pr.setCorreo(txtCorreoProveedores.getText());
+            pr.setIdTelefonoProv(Integer.parseInt(txtIdTelefonoProveedores.getText()));
+            pr.setEstado(cbEstadoProveedores.getSelectedItem().toString());
+            PrDB.RegistrarProveedor(pr);
+            JOptionPane.showMessageDialog(null, "Proveedor Registrado");
+          
+        } else {
+            JOptionPane.showMessageDialog(null, "Los campos esta vacios");
+        }
     }//GEN-LAST:event_btnNuevoProveedoresActionPerformed
 
     private void btnModificarProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarProveedoresMouseClicked
@@ -1436,6 +1458,10 @@ public class Sistema extends javax.swing.JFrame {
     private void txtIdOcupacionEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdOcupacionEmpleadosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdOcupacionEmpleadosActionPerformed
+
+    private void btnAgregarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductosActionPerformed
+         
+    }//GEN-LAST:event_btnAgregarProductosActionPerformed
 
     /**
      * @param args the command line arguments
