@@ -32,17 +32,12 @@ public class Sistema extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
     
-    
+    DefaultTableModel modeloTB = new DefaultTableModel();
     //****MEDOTOS CLIENTES****
     
     Cliente cl = new Cliente();
     ClienteDB cliente = new ClienteDB();
     int pointerCLI;
-    
-    Proveedor pr = new Proveedor();
-    ProveedorDB PrDB = new ProveedorDB();
-    
-    DefaultTableModel modeloTB = new DefaultTableModel();
     
     public void listaClientes(){
         List<Cliente> listaCl = cliente.listarClientes();
@@ -78,7 +73,42 @@ public class Sistema extends javax.swing.JFrame {
         cbEstadoCLienteCLI.setSelectedItem("");
     }
     
+    //***** METODOS PROVEEDORES*****
+    Proveedor pr = new Proveedor();
+    ProveedorDB proveedor = new ProveedorDB();
+    int pointerPROV;
 
+    
+    public void limpiarProveedor(){
+        txtIdProveedores.setText("");
+        txtNombreProveedores.setText("");
+        txtCorreoProveedores.setText("");
+        txtTelefonoProveedores.setText("");
+        txtDireccionProveedores.setText("");
+        cbEstadoProveedores.setSelectedItem("");
+    }
+    
+    public void listaProveedor(){
+        List<Proveedor> listaPr = proveedor.ListarProveedor();
+        modeloTB = (DefaultTableModel) tbProveedores.getModel();
+        
+        Object[] obj = new Object[6];
+        for (int i = 0; i < listaPr.size(); i++) {
+            obj[0] = listaPr.get(i).getIdProveedor();
+            obj[1] = listaPr.get(i).getNombre();
+            obj[2] = listaPr.get(i).getCorreo();
+            obj[3] = listaPr.get(i).getDireccion();
+            obj[4] = listaPr.get(i).getIdTelefonoProv();
+            obj[5] = listaPr.get(i).getEstado();
+            
+            modeloTB.addRow(obj);
+            
+        }
+        tbProveedores.setModel(modeloTB);
+    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -144,7 +174,7 @@ public class Sistema extends javax.swing.JFrame {
         txtNombreProveedores = new javax.swing.JTextField();
         txtCorreoProveedores = new javax.swing.JTextField();
         txtTelefonoProveedores = new javax.swing.JTextField();
-        txtIdTelefonoProveedores = new javax.swing.JTextField();
+        txtDireccionProveedores = new javax.swing.JTextField();
         cbEstadoProveedores = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbProveedores = new javax.swing.JTable();
@@ -593,7 +623,7 @@ public class Sistema extends javax.swing.JFrame {
         jLabel21.setText("Correo");
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel22.setText("Id Telefono");
+        jLabel22.setText("Direccion");
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel23.setText("Estado");
@@ -618,7 +648,7 @@ public class Sistema extends javax.swing.JFrame {
             }
         });
 
-        txtIdTelefonoProveedores.setEnabled(false);
+        txtDireccionProveedores.setEnabled(false);
 
         cbEstadoProveedores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Habilitado", "Deshabilitado"}));
         cbEstadoProveedores.setEnabled(false);
@@ -633,9 +663,14 @@ public class Sistema extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id Proveedor", "Nombre", "Correo", "Direccion", "Telefono", "Id Telefono", "Estado"
+                "Id Proveedor", "Nombre", "Correo", "Direccion", "Id Telefono", "Estado"
             }
         ));
+        tbProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbProveedoresMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tbProveedores);
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -699,7 +734,7 @@ public class Sistema extends javax.swing.JFrame {
                                         .addComponent(cbEstadoProveedores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(txtCorreoProveedores)
                                         .addComponent(txtTelefonoProveedores)
-                                        .addComponent(txtIdTelefonoProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(txtDireccionProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(tabProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(tabProveedoresLayout.createSequentialGroup()
                                     .addComponent(jLabel20)
@@ -750,7 +785,7 @@ public class Sistema extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(tabProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel22)
-                            .addComponent(txtIdTelefonoProveedores))
+                            .addComponent(txtDireccionProveedores))
                         .addGap(18, 18, 18)
                         .addGroup(tabProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel23)
@@ -1182,6 +1217,11 @@ public class Sistema extends javax.swing.JFrame {
         btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/ususario.png"))); // NOI18N
         btnProveedores.setText("Proveedores");
         btnProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnProveedoresMouseClicked(evt);
+            }
+        });
         btnProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProveedoresActionPerformed(evt);
@@ -1333,7 +1373,7 @@ public class Sistema extends javax.swing.JFrame {
                 cl.setDireccion(txtDireccionClienteCLI.getText());
                 cl.setIdTelefonoCli(Integer.parseInt(txtTelefonoClienteCLI.getText()));
 
-                if(cbEstadoCLienteCLI.getSelectedItem()!="Hablilitado"){
+                if(cbEstadoCLienteCLI.getSelectedItem()=="Hablilitado"){
                     cl.setIdEstado(1);
                 }else{
                     cl.setIdEstado(0);
@@ -1355,9 +1395,7 @@ public class Sistema extends javax.swing.JFrame {
         listaClientes();
        }else{
            
-           if("".equals(txtIdClienteCLI.getText())){
-               JOptionPane.showMessageDialog(null, "Seleccione un cliente de la tabla");
-           }else{
+           
                cl.setIdCliente(Integer.parseInt(txtIdClienteCLI.getText()));
                cl.setNombre(txtNombreClienteCLI.getText());
                cl.setCorreo(txtCorreoClienteCLI.getText());
@@ -1375,9 +1413,15 @@ public class Sistema extends javax.swing.JFrame {
                    limpiarTabla();                   
                    limpiarCliente();
                    listaClientes();
-                   
+                   btnGuardarCLI.setEnabled(false);
+                   btnNuevoClienteCLI.setEnabled(true);
+                   btnModificarCLI.setEnabled(true);
+                   txtCorreoClienteCLI.setEnabled(false);
+                   txtDireccionClienteCLI.setEnabled(false);
+                   txtTelefonoClienteCLI.setEnabled(false);
+                   cbEstadoCLienteCLI.setEnabled(false);
                }
-           }
+           
            
        }
         
@@ -1385,6 +1429,10 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarCLIMouseClicked
 
     private void btnModificarCLIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarCLIMouseClicked
+        if("".equals(txtIdClienteCLI.getText())){
+               JOptionPane.showMessageDialog(null, "Seleccione un cliente de la tabla");
+        }else{
+        
         btnGuardarCLI.setEnabled(true);     
         btnNuevoClienteCLI.setEnabled(false);        
         btnModificarCLI.setEnabled(false);
@@ -1394,6 +1442,7 @@ public class Sistema extends javax.swing.JFrame {
         txtTelefonoClienteCLI.setEnabled(true);
         cbEstadoCLienteCLI.setEnabled(true);
         pointerCLI=2;
+        }
     }//GEN-LAST:event_btnModificarCLIMouseClicked
 
     private void btnClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseClicked
@@ -1423,30 +1472,95 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_cbEstadoProveedoresActionPerformed
 
     private void btnNuevoProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoProveedoresMouseClicked
-        // TODO add your handling code here:
+       btnNuevoProveedores.setEnabled(false);
+       btnModificarProveedores.setEnabled(false);
+       btnGuardarProveedores.setEnabled(true);
+       pointerPROV = 1;
+       txtIdProveedores.setEnabled(true);
+       txtNombreProveedores.setEnabled(true);
+       txtCorreoProveedores.setEnabled(true);
+       txtTelefonoProveedores.setEnabled(true);
+       txtDireccionProveedores.setEnabled(true);
+       cbEstadoProveedores.setEnabled(true);
+       cbEstadoProveedores.setSelectedIndex(1);
     }//GEN-LAST:event_btnNuevoProveedoresMouseClicked
 
     private void btnNuevoProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProveedoresActionPerformed
-         if (!"".equals(txtIdProveedores.getText()) || !"".equals(txtNombreProveedores.getText()) || !"".equals(txtCorreoProveedores.getText()) || !"".equals(txtIdTelefonoProveedores.getText()) || !"".equals(cbEstadoProveedores.getSelectedItem())) {
-            pr.setIdProveedor(Integer.parseInt(txtIdProveedores.getText()));
-            pr.setNombre(txtNombreProveedores.getText());
-            pr.setCorreo(txtCorreoProveedores.getText());
-            pr.setIdTelefonoProv(Integer.parseInt(txtIdTelefonoProveedores.getText()));
-            pr.setEstado(cbEstadoProveedores.getSelectedItem().toString());
-            PrDB.RegistrarProveedor(pr);
-            JOptionPane.showMessageDialog(null, "Proveedor Registrado");
-          
-        } else {
-            JOptionPane.showMessageDialog(null, "Los campos esta vacios");
-        }
+         
     }//GEN-LAST:event_btnNuevoProveedoresActionPerformed
 
     private void btnModificarProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarProveedoresMouseClicked
-        // TODO add your handling code here:
+       if("".equals(txtIdProveedores.getText())){
+               JOptionPane.showMessageDialog(null, "Seleccione un proveedor de la tabla");
+           }else{
+        btnNuevoProveedores.setEnabled(false);
+       btnModificarProveedores.setEnabled(false);
+       btnGuardarProveedores.setEnabled(true);
+       pointerPROV = 2;
+       txtIdProveedores.setEnabled(false);
+       txtNombreProveedores.setEnabled(true);
+       txtCorreoProveedores.setEnabled(true);
+       txtTelefonoProveedores.setEnabled(true);
+       txtDireccionProveedores.setEnabled(true);
+       cbEstadoProveedores.setEnabled(true);
+       }
+       
     }//GEN-LAST:event_btnModificarProveedoresMouseClicked
 
     private void btnGuardarProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarProveedoresMouseClicked
-        // TODO add your handling code here:
+        if(pointerPROV==1){
+           if (!"".equals(txtIdProveedores.getText()) && !"".equals(txtNombreProveedores.getText()) && !"".equals(txtCorreoProveedores.getText()) && !"".equals(txtDireccionProveedores.getText()) && !"".equals(txtTelefonoProveedores.getText()) && !"".equals(cbEstadoProveedores.getSelectedItem())){
+            
+                pr.setIdProveedor(Integer.parseInt(txtIdProveedores.getText()));
+                pr.setNombre(txtNombreProveedores.getText());
+                pr.setCorreo(txtCorreoProveedores.getText());
+                pr.setDireccion(txtDireccionProveedores.getText());
+                pr.setIdTelefonoProv(Integer.parseInt(txtTelefonoProveedores.getText()));
+
+                if(cbEstadoProveedores.getSelectedItem()=="Hablilitado"){
+                    pr.setIdEstado(1);
+                }else{
+                    pr.setIdEstado(0);
+                }
+                proveedor.RegistrarProveedor(pr);
+                JOptionPane.showMessageDialog(null, "Proveedor Registrado");
+
+                btnGuardarProveedores.setEnabled(false);
+                btnNuevoProveedores.setEnabled(true);
+                btnModificarProveedores.setEnabled(true);
+                txtCorreoProveedores.setEnabled(false);
+                txtDireccionProveedores.setEnabled(false);
+                txtTelefonoProveedores.setEnabled(false);
+                cbEstadoProveedores.setEnabled(false);
+                limpiarProveedor();
+                limpiarTabla();
+                listaClientes();
+            }else{
+                JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
+            }
+        
+       }else{
+               pr.setIdProveedor(Integer.parseInt(txtIdProveedores.getText()));
+                pr.setNombre(txtNombreProveedores.getText());
+                pr.setCorreo(txtCorreoProveedores.getText());
+                pr.setDireccion(txtDireccionProveedores.getText());
+                pr.setIdTelefonoProv(Integer.parseInt(txtTelefonoProveedores.getText()));
+
+                if(cbEstadoProveedores.getSelectedItem()!="Hablilitado"){
+                    pr.setIdEstado(1);
+                }else{
+                    pr.setIdEstado(0);
+                }
+               if (!"".equals(txtIdProveedores.getText()) && !"".equals(txtNombreProveedores.getText()) && !"".equals(txtCorreoProveedores.getText()) && !"".equals(txtDireccionProveedores.getText()) && !"".equals(txtTelefonoProveedores.getText()) && !"".equals(cbEstadoProveedores.getSelectedItem())){
+                   proveedor.ModificarProveedor(pr);
+                   limpiarTabla();                   
+                   limpiarProveedor();
+                   listaProveedor();
+                   
+               }
+           
+           
+       }
     }//GEN-LAST:event_btnGuardarProveedoresMouseClicked
 
     private void btnGuardarProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarProveedoresActionPerformed
@@ -1532,6 +1646,22 @@ public class Sistema extends javax.swing.JFrame {
         cbEstadoCLienteCLI.setSelectedItem(tbClientesCLI.getValueAt(fila,5).toString());
         
     }//GEN-LAST:event_tbClientesCLIMouseClicked
+
+    private void btnProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProveedoresMouseClicked
+        panelInfo.setSelectedIndex(2);
+        limpiarTabla();
+        listaProveedor();
+    }//GEN-LAST:event_btnProveedoresMouseClicked
+
+    private void tbProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProveedoresMouseClicked
+        int fila = tbProveedores.rowAtPoint(evt.getPoint());
+        txtIdProveedores.setText(tbProveedores.getValueAt(fila,0).toString());
+        txtNombreProveedores.setText(tbProveedores.getValueAt(fila,1).toString());
+        txtCorreoProveedores.setText(tbProveedores.getValueAt(fila,2).toString());
+        txtTelefonoProveedores.setText(tbProveedores.getValueAt(fila,3).toString());
+        txtDireccionProveedores.setText(tbProveedores.getValueAt(fila,4).toString());
+        cbEstadoProveedores.setSelectedItem(tbClientesCLI.getValueAt(fila,5).toString());
+    }//GEN-LAST:event_tbProveedoresMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1659,6 +1789,7 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JTextField txtDescripcionProductoNV;
     private javax.swing.JTextField txtDireccionClienteCLI;
     private javax.swing.JTextField txtDireccionEmpleados;
+    private javax.swing.JTextField txtDireccionProveedores;
     private javax.swing.JTextField txtIdClienteCLI;
     private javax.swing.JTextField txtIdClienteNV;
     private javax.swing.JTextField txtIdEmpleados;
@@ -1666,7 +1797,6 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JTextField txtIdProductoNV;
     private javax.swing.JTextField txtIdProductosProductos;
     private javax.swing.JTextField txtIdProveedores;
-    private javax.swing.JTextField txtIdTelefonoProveedores;
     private javax.swing.JTextField txtIdVenta;
     private javax.swing.JTextField txtNombreClienteCLI;
     private javax.swing.JTextField txtNombreClienteNV;

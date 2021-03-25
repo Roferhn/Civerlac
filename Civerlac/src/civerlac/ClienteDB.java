@@ -82,7 +82,7 @@ public class ClienteDB {
                 
                 
                 listaCL.add(cl);
-                System.out.println(listaCL);
+                
                  
             }
         } catch (SQLException e) {

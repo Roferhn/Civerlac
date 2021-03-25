@@ -785,7 +785,7 @@
                                                   <Component id="cbEstadoProveedores" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="txtCorreoProveedores" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="txtTelefonoProveedores" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="txtIdTelefonoProveedores" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
+                                                  <Component id="txtDireccionProveedores" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -854,7 +854,7 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtIdTelefonoProveedores" alignment="3" max="32767" attributes="0"/>
+                                      <Component id="txtDireccionProveedores" alignment="3" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -918,7 +918,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="12" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Id Telefono"/>
+                    <Property name="text" type="java.lang.String" value="Direccion"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel23">
@@ -952,7 +952,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTelefonoProveedoresActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtIdTelefonoProveedores">
+                <Component class="javax.swing.JTextField" name="txtDireccionProveedores">
                   <Properties>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
@@ -981,12 +981,11 @@
                     <Component class="javax.swing.JTable" name="tbProveedores">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="7" rowCount="0">
+                          <Table columnCount="6" rowCount="0">
                             <Column editable="true" title="Id Proveedor" type="java.lang.Object"/>
                             <Column editable="true" title="Nombre" type="java.lang.Object"/>
                             <Column editable="true" title="Correo" type="java.lang.Object"/>
                             <Column editable="true" title="Direccion" type="java.lang.Object"/>
-                            <Column editable="true" title="Telefono" type="java.lang.Object"/>
                             <Column editable="true" title="Id Telefono" type="java.lang.Object"/>
                             <Column editable="true" title="Estado" type="java.lang.Object"/>
                           </Table>
@@ -1023,17 +1022,15 @@
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
                           </TableColumnModel>
                         </Property>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbProveedoresMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1834,6 +1831,7 @@
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnProveedoresMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProveedoresActionPerformed"/>
           </Events>
         </Component>

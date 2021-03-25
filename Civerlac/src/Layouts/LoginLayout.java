@@ -46,6 +46,7 @@ public class LoginLayout extends javax.swing.JFrame {
                     dispose();
               }else{
                   JOptionPane.showMessageDialog(null,"Usuario o contrasena incorrectos.");
+                  cont--;
               }              
             }else{
            JOptionPane.showMessageDialog(null,"Usuario bloqueado.");   

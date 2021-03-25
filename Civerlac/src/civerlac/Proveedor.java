@@ -15,6 +15,8 @@ public class Proveedor {
     private String Nombre;
     private String Correo;
     private int idTelefonoProv;
+    private String Direccion;
+    private int idEstado;
     private String Estado;
     
     public Proveedor() {
@@ -22,11 +24,13 @@ public class Proveedor {
       
     }
 
-    public Proveedor(int idProveedor, String Nombre, String Correo, int idTelefonoProv, String Estado) {
+    public Proveedor(int idProveedor, String Nombre, String Correo, String Direccion, int idTelefonoProv,int idEstado, String Estado) {
         this.idProveedor = idProveedor;
         this.Nombre = Nombre;
         this.Correo = Correo;
+        this.Direccion = Direccion;
         this.idTelefonoProv = idTelefonoProv;
+        this.idEstado = idEstado;
         this.Estado = Estado;
     }
 
@@ -54,6 +58,16 @@ public class Proveedor {
         this.Correo = Correo;
     }
 
+    public String getDireccion() {
+        return Direccion;
+    }
+
+    public void setDireccion(String Direccion) {
+        this.Direccion = Direccion;
+    }
+
+    
+    
     public int getIdTelefonoProv() {
         return idTelefonoProv;
     }
@@ -62,6 +76,15 @@ public class Proveedor {
         this.idTelefonoProv = idTelefonoProv;
     }
 
+    public int getIdEstado() {
+        return idEstado;
+    }
+
+    public void setIdEstado(int idEstado) {
+        this.idEstado = idEstado;
+    }
+
+    
     public String getEstado() {
         return Estado;
     }
