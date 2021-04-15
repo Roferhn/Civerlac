@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5e1a5347-ab28-4d00-9a94-c7a945b8fba1">
+	<property name="ireport.zoom" value="2.1435888100000016"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="184"/>
+	<subDataset name="New Dataset 1" uuid="850b05c8-e709-4fdc-bdcb-aaf900f8eb8e">
+		<queryString language="SQL">
+			<![CDATA[select  * from factura]]>
+		</queryString>
+		<field name="idFactura" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="Cliente" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="Vendedor" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="total" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<group name="idFactura">
+			<groupExpression><![CDATA[$F{idFactura}]]></groupExpression>
+		</group>
+		<group name="Cliente">
+			<groupExpression><![CDATA[$F{Cliente}]]></groupExpression>
+		</group>
+		<group name="Vendedor">
+			<groupExpression><![CDATA[$F{Vendedor}]]></groupExpression>
+		</group>
+		<group name="total">
+			<groupExpression><![CDATA[$F{total}]]></groupExpression>
+		</group>
+	</subDataset>
+	<queryString>
+		<![CDATA[select * from factura]]>
+	</queryString>
+	<field name="idFactura" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Cliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Vendedor" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="177" y="40" width="265" height="39" uuid="4ec4171c-deb8-4c2a-9a88-25ccd614bac8"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Reporte de Ventas]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="158" height="61" uuid="9edf368d-357c-4f45-9c21-c44de970d4d6"/>
+				<imageExpression><![CDATA["C:\\Users\\khaleb\\Desktop\\Trabajos & Proyectos 2021\\Freelance-unicah-trabajos\\Civerlac-feature-validaciones\\Civerlac-master\\Civerlac\\src\\Img\\LOGO PEQUENO.jpg"]]></imageExpression>
+			</image>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="455" y="20" width="100" height="20" uuid="a6442682-83ae-428b-a23b-4c445bb5b673"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="39" y="2" width="100" height="20" uuid="76174a40-4b9d-44df-b5bd-14de4fca71b2"/>
+				<text><![CDATA[Numero de Factura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="177" y="2" width="100" height="20" uuid="d5b4ef80-4227-4ec9-9b76-4dac142d6604"/>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="296" y="2" width="100" height="20" uuid="0a3a553c-0413-4768-b83c-949e3bd1299d"/>
+				<text><![CDATA[Vendedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="422" y="0" width="100" height="20" uuid="47c4528f-8543-4cfc-964e-cba93e8d75a3"/>
+				<text><![CDATA[Total ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="36" y="29" width="519" height="1" uuid="5d2612d3-5e2d-4884-8ba5-4883ef2812d8"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="51" splitType="Stretch">
+			<textField>
+				<reportElement x="39" y="17" width="100" height="20" uuid="72be598c-82b7-46c2-a36e-e221dc0672fd"/>
+				<textFieldExpression><![CDATA[$F{idFactura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="177" y="17" width="100" height="20" uuid="77161ef4-d9c3-4823-91df-4a867a1b0d5d"/>
+				<textFieldExpression><![CDATA[$F{Cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="296" y="17" width="100" height="20" uuid="e03e9f06-7605-4890-b030-199f79c0d7bd"/>
+				<textFieldExpression><![CDATA[$F{Vendedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="422" y="17" width="100" height="20" uuid="1ada0dac-74ed-454e-a2d9-e1c1ac74afed"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="157" y="0" width="1" height="49" uuid="3fa3cf22-33c1-49af-9032-8a6cb8ff7467"/>
+			</line>
+			<line>
+				<reportElement x="39" y="49" width="516" height="1" uuid="42ca7bea-cb3a-41c0-b0c5-40df9ee5512c"/>
+			</line>
+			<line>
+				<reportElement x="277" y="0" width="1" height="49" uuid="30dac329-b431-442b-ba9f-f30400d891bb"/>
+			</line>
+			<line>
+				<reportElement x="396" y="0" width="1" height="49" uuid="728d277d-1a7a-4045-adc1-6abd39ddd076"/>
+			</line>
+			<line>
+				<reportElement x="522" y="0" width="1" height="49" uuid="27fe7a39-d8a4-42c1-8684-b6226110475a"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="11" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="10" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="8" splitType="Stretch"/>
+	</summary>
+</jasperReport>
